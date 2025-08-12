@@ -1,0 +1,305 @@
+---
+// No server-side logic needed for this page
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Driving Lesson Hunter - Find UK Driving Test Centres</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+      }
+      
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+      
+      .header {
+        text-align: center;
+        margin-bottom: 3rem;
+        color: white;
+      }
+      
+      .header h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      }
+      
+      .header p {
+        font-size: 1.2rem;
+        opacity: 0.9;
+      }
+      
+      .search-card {
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        margin-bottom: 2rem;
+      }
+      
+      .search-form {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: end;
+      }
+      
+      .form-group {
+        flex: 1;
+        min-width: 200px;
+      }
+      
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: #555;
+      }
+      
+      .form-group input,
+      .form-group select {
+        width: 100%;
+        padding: 0.75rem;
+        border: 2px solid #e1e5e9;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border-color 0.3s;
+      }
+      
+      .form-group input:focus,
+      .form-group select:focus {
+        outline: none;
+        border-color: #667eea;
+      }
+      
+      .search-btn {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        padding: 0.75rem 2rem;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s;
+      }
+      
+      .search-btn:hover {
+        transform: translateY(-2px);
+      }
+      
+      .search-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+      }
+      
+      .loading {
+        text-align: center;
+        padding: 2rem;
+        color: #666;
+      }
+      
+      .results {
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      }
+      
+      .results h2 {
+        margin-bottom: 1.5rem;
+        color: #333;
+      }
+      
+      .centre-card {
+        border: 1px solid #e1e5e9;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        transition: box-shadow 0.3s;
+      }
+      
+      .centre-card:hover {
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      }
+      
+      .centre-name {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 0.5rem;
+      }
+      
+      .centre-address {
+        color: #666;
+        margin-bottom: 0.5rem;
+      }
+      
+      .centre-distance {
+        display: inline-block;
+        background: #667eea;
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+      
+      .error {
+        background: #fee;
+        border: 1px solid #fcc;
+        color: #c33;
+        padding: 1rem;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+      }
+      
+      .no-results {
+        text-align: center;
+        padding: 2rem;
+        color: #666;
+      }
+      
+      @media (max-width: 768px) {
+        .header h1 {
+          font-size: 2rem;
+        }
+        
+        .search-form {
+          flex-direction: column;
+        }
+        
+        .form-group {
+          min-width: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1>🚗 Driving Lesson Hunter</h1>
+        <p>Find available driving test centres near you in the UK</p>
+      </header>
+      
+      <div class="search-card">
+        <form class="search-form" id="searchForm">
+          <div class="form-group">
+            <label for="postcode">Your Postcode</label>
+            <input 
+              type="text" 
+              id="postcode" 
+              name="postcode" 
+              placeholder="e.g. B15 2TT"
+              required
+            />
+          </div>
+          
+          <div class="form-group">
+            <label for="radius">Search Radius</label>
+            <select id="radius" name="radius">
+              <option value="25">25 miles</option>
+              <option value="50" selected>50 miles</option>
+              <option value="100">100 miles</option>
+              <option value="200">200 miles</option>
+            </select>
+          </div>
+          
+          <button type="submit" class="search-btn" id="searchBtn">
+            Search Centres
+          </button>
+        </form>
+      </div>
+      
+      <div id="loading" class="loading" style="display: none;">
+        <p>🔍 Searching for test centres...</p>
+      </div>
+      
+      <div id="error" class="error" style="display: none;"></div>
+      
+      <div id="results" class="results" style="display: none;">
+        <h2 id="resultsTitle"></h2>
+        <div id="centresList"></div>
+      </div>
+    </div>
+
+    <script>
+      const form = document.getElementById('searchForm');
+      const loading = document.getElementById('loading');
+      const error = document.getElementById('error');
+      const results = document.getElementById('results');
+      const resultsTitle = document.getElementById('resultsTitle');
+      const centresList = document.getElementById('centresList');
+      const searchBtn = document.getElementById('searchBtn');
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const formData = new FormData(form);
+        const postcode = formData.get('postcode');
+        const radius = formData.get('radius');
+        
+        // Reset UI
+        error.style.display = 'none';
+        results.style.display = 'none';
+        loading.style.display = 'block';
+        searchBtn.disabled = true;
+        searchBtn.textContent = 'Searching...';
+        
+        try {
+          const response = await fetch(`/api/search?postcode=${encodeURIComponent(postcode)}&radius=${radius}`);
+          const data = await response.json();
+          
+          loading.style.display = 'none';
+          
+          if (!response.ok) {
+            throw new Error(data.error || 'Search failed');
+          }
+          
+          // Display results
+          resultsTitle.textContent = `Found ${data.total} test centres within ${data.radius} miles of ${data.userPostcode}`;
+          
+          if (data.centres.length === 0) {
+            centresList.innerHTML = '<div class="no-results">No test centres found in this area. Try increasing your search radius.</div>';
+          } else {
+            centresList.innerHTML = data.centres.map(centre => `
+              <div class="centre-card">
+                <div class="centre-name">${centre.name}</div>
+                <div class="centre-address">${centre.address}, ${centre.postcode}</div>
+                <span class="centre-distance">${centre.distance.toFixed(1)} miles away</span>
+              </div>
+            `).join('');
+          }
+          
+          results.style.display = 'block';
+          
+        } catch (err) {
+          loading.style.display = 'none';
+          error.textContent = err.message;
+          error.style.display = 'block';
+        } finally {
+          searchBtn.disabled = false;
+          searchBtn.textContent = 'Search Centres';
+        }
+      });
+    </script>
+  </body>
+</html>
