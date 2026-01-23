@@ -78,3 +78,25 @@ This project is showcased by **Monthly Web Design**, offering [pay monthly websi
 - 📧 Examples: [View Our Work](https://monthlywebdesign.com/examples)
 - 💼 Contact: [Get Started](https://monthlywebdesign.com/contact)
 - 🏢 Also visit: [Opace Digital Agency](https://opace.agency)
+
+
+---
+
+## About Monthly Web Design
+
+This project is showcased by **Monthly Web Design**, offering [pay monthly website design services](https://monthlywebdesign.com) with no upfront costs.
+
+### Our Services
+
+- **Pay Monthly Websites** - Professional sites from £99/month
+- **No Upfront Costs** - Get started immediately
+- **Includes Hosting & Support** - Everything you need
+- **Modern Web Design** - Built with latest technologies
+- **Flexible Plans** - Cancel anytime
+
+### Get in Touch
+
+- 🌐 Website: [monthlywebdesign.com](https://monthlywebdesign.com)
+- 📧 Examples: [View Our Work](https://monthlywebdesign.com/examples)
+- 💼 Contact: [Get Started](https://monthlywebdesign.com/contact)
+- 🏢 Also visit: [Opace Digital Agency](https://opace.agency)
