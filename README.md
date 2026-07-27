@@ -1,5 +1,7 @@
 # 🚗 Driving Lesson Hunter
 
+> **Opace open-source portfolio:** [Browse Opace web applications, data projects, AI tools and Agent Skills](https://github.com/OpaceDigitalAgency/OpaceDigitalAgency)
+
 A UK-focused web application that helps learner drivers find available driving test centres near them using **real data only**.
 
 ## Features
